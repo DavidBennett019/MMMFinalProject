@@ -1,7 +1,11 @@
 {% block content %}
 
-<div>Hello World!</div>
-
+<div>Fill out the form below to receive a zip code recommendation</div>
+<form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit">SUBMIT</button>
+</form>
 
 
 
