@@ -23,9 +23,9 @@ def index(request):
             lang_prio = int(cleaned_form['lang_prio'])
             pets = 1 if cleaned_form['pets'] == 'Yes' else 0
             if age < 20:
-                return render(request, 'error.html', {'errormessage', 'This tool can only provide recommendations for people between 20 and 29 years of age'})
+                return render(request, 'error.html', {'errormessage': 'This tool can only provide recommendations for people between 20 and 29 years of age'})
             if max_rent < min_rent:
-                return render(request, 'error.html', {'errormessage', 'Your max rent value was less than your min'})
+                return render(request, 'error.html', {'errormessage': 'Your max rent value was less than your min'})
             if age > 29:
                 return HttpResponseRedirect('https://www.aarp.org/')
             if trans == 'Walk':

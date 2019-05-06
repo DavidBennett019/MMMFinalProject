@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a8c51a66-4622-484b-82fc-625accd1a232" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/housingredirect/templates/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/housingredirect/templates/about.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/housingredirect/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/housingredirect/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -56,8 +55,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/housingredirect/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="25" column="158" selection-start-line="25" selection-start-column="158" selection-end-line="25" selection-end-column="158" />
+            <state>
+              <caret line="27" column="69" selection-start-line="27" selection-start-column="69" selection-end-line="27" selection-end-column="69" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -563,8 +562,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/housingredirect/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="25" column="158" selection-start-line="25" selection-start-column="158" selection-end-line="25" selection-end-column="158" />
+        <state>
+          <caret line="27" column="69" selection-start-line="27" selection-start-column="69" selection-end-line="27" selection-end-column="69" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
           </folding>
