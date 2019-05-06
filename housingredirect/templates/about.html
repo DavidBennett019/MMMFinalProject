@@ -4,9 +4,9 @@
 {% block content %}
 <style>
     p {
-          padding-top: 10px;
           padding-right: 50px;
           padding-left: 25px;
+          text-indent: 2.0em;
     }
 
     h1 {
@@ -26,17 +26,23 @@
 </style>
 <h1>About this Site</h1>
 <p class="text-left">The goal of this site is to help young professionals find the ideal place to live based on their work location and a number of personal preferences. We utilize Zillow rental price data, GIS methods, and basic utility maximization to provide affordable housing options that meet the needs of all sorts of young workers. Below you will find a behind the scenes look at the data and methods that make this site function. We also address limitations of our product.
-<br>
+</p>
+<p class="text-left">
 We use Zillow’s ZIP Code level datasets for median rental prices of 1-, 2-, 3- and 4-bedroom apartments. Using these datasets allows us to give users the option of choosing the number of roommates they will have (i.e. 3 roommates for a 4-bedroom apartment). The Zillow data is, however, limited to only 95 ZIP Codes that occur in each of these datasets. We further limit the options to 78 ZIP Codes that are in major U.S. cities including Atlanta, Boston, Charlotte, Chicago, Dallas, Houston, Las Vegas, Los Angeles, Miami, New York, and Orlando. We refer to these as “home” ZIP Codes.
-<br>
+</p>
+<p class="text-left">
 Using the 2010 U.S. Census ZIP Code tabulation area shapefile from the Census Bureau’s TIGER/Line data portal, we calculate the distance between roughly 33,000 U.S. ZIP Codes and their nearest 400 neighbors. Combining this distance matrix with our set of Zillow ZIP Codes results in 31,200 possible work-home ZIP Code combinations (i.e. each of the 78 home ZIP Codes has 400 neighbors). While this is not ideal for a fully functioning site, it is more than enough for our proof of concept. In the image below you can see the ZIP Code where the University of Chicago is located as well as the six ZIP Codes in our dataset that are within its 400 nearest neighbors. So, while other nearby ZIP Codes may have better characteristics, we can only maximize utility between the six highlighted.
-<br>
+</p>
+<p class="text-left">
 We match all of the “home” ZIP Codes to data from the American Community Survey. These data include proportion of population by gender and age group, proportion of population that walk, bike, drive, or take public transportation to work, and the average travel time for commuters. ACS also includes data on the proportion of population that speaks Spanish, Indo-European, or Asian and Pacific islander languages.
-<br>
+</p>
+<p class="text-left">
 Walk limit is 1.5 miles (or closest ZIP)
-<br>
+</p>
+<p class="text-left">
 Bike limit is 5 miles (or closest ZIP)
-    <br>
+</p>
+<p class="text-left">
 
     <ul> Some good ZIP codes to try out are:
         <li>60637 U of Chicago</li>
