@@ -16,13 +16,11 @@ def index(request):
             gender_prio = int(cleaned_form['gender_prio'])
             trans_prio = int(cleaned_form['trans_prio'])
             min_rent = int(cleaned_form['min_rent'])
-            max_rent = cleaned_form['max_rent']
+            max_rent = int(cleaned_form['max_rent'])
             relationship = cleaned_form['relationship']
             language = cleaned_form['language']
             rel_prio = int(cleaned_form['rel_prio'])
             lang_prio = int(cleaned_form['lang_prio'])
-            if max_rent != '':
-                max_rent = int(max_rent)
             pets = 1 if cleaned_form['pets'] == 'Yes' else 0
             if max_rent < min_rent:
                 return render(request, 'error.html', {'errormessage', 'Your max rent value was less than your min'})
@@ -39,9 +37,12 @@ def index(request):
             else:
                 zips = ZipRelation.objects.filter(targetID=cleaned_form['work_zip'])
             max_utility = float('-inf')
-            best_zip = zips[0]
+            try:
+                best_zip = zips[0]
+            except:
+                return render(request, 'error.html', {'errormessage': 'The zip code you entered was invalid or not in our database, please try another zip code'})
             if cleaned_form['work_zip'] < 1000 or cleaned_form['work_zip'] > 99999:
-                return render(request, 'error.html', {'errormessage': 'The zip code you entered was invalid or was not in our database, please try another zip code'})
+                return render(request, 'error.html', {'errormessage': 'The zip code you entered was invalid or not in our database, please try another zip code'})
             if zips:
                 pass
             else:
@@ -91,6 +92,8 @@ def index(request):
                 utility = genderval * gender_prio + transval * trans_prio + relval * rel_prio + langval * lang_prio - rentval - distanceval
                 best_zip = zr if utility > max_utility else best_zip
                 max_utility = utility if utility > max_utility else max_utility
+            if max_rent > 3000:
+                return HttpResponseRedirect('https://www.zillow.com/homes/for_rent/{}/paymenta_sort/{}-_beds/{}_pets'.format(best_zip.zip, beds, pets))
             return HttpResponseRedirect('https://www.zillow.com/homes/for_rent/{}/{}-{}_mp/paymenta_sort/{}-_beds/{}_pets'.format(best_zip.zip, min_rent, max_rent, beds, pets))
     else:
         form = ZipFinderForm()
