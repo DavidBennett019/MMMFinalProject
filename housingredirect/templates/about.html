@@ -23,8 +23,13 @@
         padding-left: 10px;
     }
 
+    h6 {
+        padding-left: 20px;
+    }
+
 </style>
 <h1>About this Site</h1>
+<h6>By: David Bennett, Ian Hardman, Julia Heinzel, and Andrew Vaaler</h6>
 <p class="text-left">The goal of this site is to help young professionals find the ideal place to live based on their work location and a number of personal preferences. We utilize Zillow rental price data, GIS methods, and basic utility maximization to provide affordable housing options that meet the needs of all sorts of young workers. Below you will find a behind the scenes look at the data and methods that make this site function. We also address limitations of our product.
 </p>
 <p class="text-left">
@@ -64,5 +69,4 @@ We match all of the “home” ZIP Codes to data from the American Community Sur
 </ol>
 <a href="{% url 'housingredirect:form' %}">Click Here to Use the Tool</a>
 <p>*- It is assumed that if you select walking as your method of transportation, the limit of how far this will be from your office will be 1.5 miles (or closest zip code) and if you select biking as your method of transportation, the limit will be 5 miles (or closest zip code)</p>
-
 {% endblock %}
