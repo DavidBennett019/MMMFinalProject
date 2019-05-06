@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-
+{% load static %}
 {% block content %}
 <style>
     p {
@@ -38,6 +38,7 @@ We use Zillow’s ZIP Code level datasets for median rental prices of 1-, 2-, 3-
 <p class="text-left">
 Using the 2010 U.S. Census ZIP Code tabulation area shapefile from the Census Bureau’s TIGER/Line data portal, we calculate the distance between roughly 33,000 U.S. ZIP Codes and their nearest 400 neighbors. Combining this distance matrix with our set of Zillow ZIP Codes results in 31,200 possible work-home ZIP Code combinations (i.e. each of the 78 home ZIP Codes has 400 neighbors). While this is not ideal for a fully functioning site, it is more than enough for our proof of concept. In the image below you can see the ZIP Code where the University of Chicago is located as well as the six ZIP Codes in our dataset that are within its 400 nearest neighbors. So, while other nearby ZIP Codes may have better characteristics, we can only maximize utility between the six highlighted.
 </p>
+<img src="{% static 'mappic.png' %}" width="500px" style="padding-left: 20px">
 <p class="text-left">
 We match all of the “home” ZIP Codes to data from the American Community Survey. These data include proportion of population by gender and age group, proportion of population that walk, bike, drive, or take public transportation to work, and the average travel time for commuters. ACS also includes data on the proportion of population that speaks Spanish, Indo-European, or Asian and Pacific islander languages.
 </p>
