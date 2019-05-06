@@ -15,7 +15,17 @@ def index(request):
             beds = cleaned_form['bedrooms']
             gender_prio = int(cleaned_form['gender_prio'])
             trans_prio = int(cleaned_form['trans_prio'])
+            min_rent = int(cleaned_form['min_rent'])
+            max_rent = cleaned_form['max_rent']
+            relationship = cleaned_form['relationship']
+            language = cleaned_form['language']
+            rel_prio = int(cleaned_form['rel_prio'])
+            lang_prio = int(cleaned_form['lang_prio'])
+            if max_rent != '':
+                max_rent = int(max_rent)
             pets = 1 if cleaned_form['pets'] == 'Yes' else 0
+            if max_rent < min_rent:
+                return render(request, 'error.html', {'errormessage', 'Your max rent value was less than your min'})
             if age > 29:
                 return HttpResponseRedirect('https://www.aarp.org/')
             if trans == 'Walk':
@@ -31,7 +41,11 @@ def index(request):
             max_utility = float('-inf')
             best_zip = zips[0]
             if cleaned_form['work_zip'] < 1000 or cleaned_form['work_zip'] > 99999:
-                return render(request, 'error.html', {'errormessage': 'This zip code was either invalid or not in our database, please enter a valid zip code'})
+                return render(request, 'error.html', {'errormessage': 'The zip code you entered was invalid or was not in our database, please try another zip code'})
+            if zips:
+                pass
+            else:
+                return render(request, 'error.html', {'errormessage': 'The zip code you entered was not in our database, please try another zip code'})
             for zr in zips:
                 distanceval = zr.distance
                 if gender == 'Male':
@@ -58,13 +72,31 @@ def index(request):
                     rentval = zr.three_bed_rent / 3
                 else:
                     rentval = zr.four_bed_rent / 4
-                utility = genderval * gender_prio + transval * trans_prio - rentval - distanceval
+                if relationship == 'Male':
+                    relval = zr.nev_mar_male_20_34
+                elif relationship == 'Female':
+                    relval = zr.nev_mar_female_20_34
+                elif relationship == 'Either':
+                    relval = (zr.nev_mar_female_20_34 + zr.nev_mar_male_20_34) / 2
+                else:
+                    relval = 0
+                if language == 'Spanish':
+                    langval = zr.pct_span
+                elif language == 'European':
+                    langval = zr.pct_euro
+                elif language == 'Asian':
+                    langval = zr.pct_asia
+                else:
+                    langval = 0
+                utility = genderval * gender_prio + transval * trans_prio + relval * rel_prio + langval * lang_prio - rentval - distanceval
                 best_zip = zr if utility > max_utility else best_zip
                 max_utility = utility if utility > max_utility else max_utility
-            return HttpResponseRedirect('https://www.zillow.com/homes/for_rent/{}/paymenta_sort/{}-_beds/{}_pets'.format(best_zip.zip, beds, pets))
+            return HttpResponseRedirect('https://www.zillow.com/homes/for_rent/{}/{}-{}_mp/paymenta_sort/{}-_beds/{}_pets'.format(best_zip.zip, min_rent, max_rent, beds, pets))
     else:
         form = ZipFinderForm()
     return render(request, 'index.html', {'form': form})
 
+
 def about(request):
     return render(request, 'about.html')
+
